@@ -1,0 +1,39 @@
+-- Use the library database
+USE LibraryDB;
+
+-- Insert sample authors
+INSERT INTO Authors (Name)
+VALUES 
+('J.K. Rowling'),
+('George Orwell'),
+('Jane Austen');
+
+-- Insert sample books
+INSERT INTO Books (Title, AuthorID)
+VALUES 
+('Harry Potter and the Sorcerer''s Stone', 1),
+('1984', 2),
+('Pride and Prejudice', 3);
+
+-- Insert members (one with NULL email)
+INSERT INTO Members (Name, Email)
+VALUES 
+('Alice Smith', 'alice@example.com'),
+('Bob Johnson', NULL),
+('Charlie Brown', 'charlie@example.com');
+
+-- Insert borrow records (one with NULL date)
+INSERT INTO Borrow (BookID, MemberID, BorrowDate)
+VALUES 
+(1, 1, '2024-05-01'),
+(2, 2, NULL),
+(3, 3, '2024-06-01');
+
+-- Update missing borrow date
+UPDATE Borrow
+SET BorrowDate = '2024-06-10'
+WHERE BorrowDate IS NULL;
+
+-- Delete a member
+DELETE FROM Members
+WHERE Name = 'Bob Johnson';
